@@ -69,7 +69,35 @@ class Board(Node):
             self.col=0
         if(self.col<0):
             self.col=width-size
-        
+
+    def update_board(self,cursor):
+        size=cursor.get_size()
+        row=self.get_row(cursor)
+        current=self.head
+        for i in range(row,shape_size-1,-1):
+            for j in range(self.col,self.col+size,1):
+                current.data[j+self.col]=current.data[j+self.col]+cursor.shape[i][j]
+                if(current.data[j+self.col]!=0):
+                    current.data[j+self.col]=1
+            current=current.next
+
+        current=self.head
+        while(1):
+            p=current
+            current=current.next
+            if(current==None):
+                break
+            Line=0
+            for j in range(0,width,1):
+                Line=Line+current.data[j]
+            if(Line>=width):
+                self.remove_row(p)
+                current=p
+
+        if(self.get_count()<height+shape_size):
+            for i in range(self.get_count(),height+shape_size,1):
+                self.add_row()
+   
 
 
 class Cursor:
