@@ -1,32 +1,29 @@
+
 from game.game_engine import width,height,shape_size
-import pygame
+#import curses
+#import pygame
+import os
+import msvcrt
 
-screen=pygame.display.set_mode((width*100,height*100))
-def display(board,cursor):
-    row=board.get_row(cursor)
-    row=row+shape_size-1
-    col=board.col
-    current=board.head
-    size=cursor.get_size()
+def getch():
+    # msvcrt.getch() returns a byte string; decode it to get a standard string
+    return msvcrt.getch().decode("utf-8", errors="ignore")
+def clear_screen():
+    os.system('cls')
 
-    
-    current=board.get_Node(height)
-    for i in range(height+shape_size-1,0,-1):
-        if(i>height):
-            current=current.node
-            continue
+
+
+def display(brd):
+    key=getch()
+    clear_screen()
+    print("Starting funcion \n Display")
+    for i in range(height-shape_size-1,-1,-1):
+        print("")
+        temp=brd.board[i]
+        #print(temp,end=" ")
         for j in range(width):
-            if(i<=row and i>row-shape_size and j>=col and j<col+size):
-                if(cursor.shape[i-row][j-col]==0):
-                    print("  ")
-                else:
-                    print("==")
-            else:
-                if(current.data[j]==0):
-                    print("  ")
-                else:
-                    print("++")
+            print((temp%2),end=" ")
+            temp=temp//2
 
-     
-        current=current.node
+
 
