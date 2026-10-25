@@ -76,10 +76,22 @@ class Cursor:
             #print(Max)
             Max=Max//2
             i+=1
-        self.size=i    
-
-
+        self.size=i  
+    def converter(self):
+        temp=[]
+        if(self.col<=width-self.size):
+            for i in range(shape_size):
+                temp.append(2**(self.col)*self.cursor[i])
+            return temp
+        else:
+            return
     
+        
+
+
+
+def get_row(brd,csr):
+    pass
             
 
                 
