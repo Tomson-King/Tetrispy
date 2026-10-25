@@ -13,15 +13,25 @@ def clear_screen():
 
 
 
-def display(brd):
-    key=getch()
+def display_board(brd):
     clear_screen()
-    print("Starting funcion \n Display")
+
+    print("\nBoard")
     for i in range(height-shape_size-1,-1,-1):
         print("")
         temp=brd.board[i]
         #print(temp,end=" ")
         for j in range(width):
+            print((temp%2),end=" ")
+            temp=temp//2
+def display_cursor(crs):
+    
+    print(f"\nCursor size {crs.size}")
+    for i in range(shape_size-1,-1,-1):
+        print("")
+        temp=crs.cursor[i]
+        #print(temp,end=" ")
+        for j in range(shape_size):
             print((temp%2),end=" ")
             temp=temp//2
 
