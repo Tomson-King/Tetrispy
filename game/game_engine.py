@@ -1,13 +1,17 @@
 
 #Callibrations for the board
 
-width = 8
+
+width = 20
 height = 20
 shape_size = 4
-shapes_no = 6
+shapes=[39,99,54,15,275,51]
 
 
-
+def randomizer():
+    import random
+    r=random.randint(0,len(shapes)-1)
+    return shapes[r]
 
 #setting Board
 class Board:
@@ -18,9 +22,7 @@ class Board:
         for i in range(height):
             self.board.append(data%(2**width))
             data=data//(2**width)
-    def update(self,cursor):
-        pass
-
+   
 
 
 class Cursor:
@@ -34,6 +36,7 @@ class Cursor:
         data=data//1
 
         #print("Starting funcion \n Cursor init")
+        self.cursor.clear()
         for i in range(shape_size):
             self.cursor.append(data%(2**shape_size))
             data=data//(2**shape_size)
@@ -91,7 +94,62 @@ class Cursor:
 
 
 def get_row(brd,csr):
-    pass
+    temp=csr.converter()
+    for i in range(height-shape_size,-1,-1):
+        for j in range(shape_size):
+            if(brd.board[i+j]&temp[j]!=0):
+                j=4
+                break
+        if(j==4):
+            break
+    if(j==4):
+        return i+1
+    else:
+        return i
+
+
+def update_Game(brd,csr):
+
+    rows=[]
+    row=get_row(brd,csr)
+    for i in range(shape_size):
+        rows.append(row+i)
+    csrtemp=csr.converter()
+    for i in range(height-shape_size-1,-1,-1):
+        temp=brd.board[i]
+        for j in range(width):
+            if i in rows:
+                k=i-row
+                brd.board[i]=((temp)|(csrtemp[k]))
+    for i in range(height-shape_size-1,-1,-1):
+        if(brd.board[i]==(2**(width)-1)):
+            brd.board.pop(i)
+            brd.board.append(0)
+
+
+def controller(brd,csr,prm):
+    match(prm):
+        case 'e':
+            return 0
+        case 'w':
+            csr.rotater()
+            return 1
+        case 'd':
+            csr.col+=1
+            if(csr.col==width-csr.size+1):
+                csr.col=0
+            return 1
+        case 'a':
+            
+            if(csr.col==0):
+                csr.col=width-csr.size+1
+            csr.col-=1
+            return 1
+        case '\r':
+            update_Game(brd,csr) 
+            return 2      
+
+
             
 
                 

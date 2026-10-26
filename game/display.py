@@ -1,5 +1,5 @@
 
-from game.game_engine import width,height,shape_size
+from game.game_engine import *
 #import curses
 #import pygame
 import os
@@ -14,8 +14,7 @@ def clear_screen():
 
 
 def display_board(brd):
-    clear_screen()
-
+    
     print("\nBoard")
     for i in range(height-shape_size-1,-1,-1):
         print("")
@@ -34,6 +33,38 @@ def display_cursor(crs):
         for j in range(shape_size):
             print((temp%2),end=" ")
             temp=temp//2
+def display_Game(brd,csr):
+    clear_screen()
 
+   
+
+    print("\nBoard")
+    rows=[]
+    row=get_row(brd,csr)
+    for i in range(shape_size):
+        rows.append(row+i)
+    csrtemp=csr.converter()
+    for i in range(height-shape_size-1,-1,-1):
+        print("|",end="")
+        temp=brd.board[i]
+        #print(temp,end=" ")
+        for j in range(width):
+            if i in rows:
+                k=i-row
+                pr=((temp%2)+(csrtemp[k]%2*2))
+                temp=temp//2
+                csrtemp[k]=csrtemp[k]//2
+
+            else:
+                pr=temp%2
+                temp=temp//2
+            match(pr):
+                case 0:
+                    print(" ",end="")
+                case 1:
+                    print("$",end="")
+                case 2:
+                    print("#",end="")
+        print("|")
 
 
