@@ -166,7 +166,7 @@ def Game(brd,csr,prm):
 def save(brd):
     val=0
     for i in range(height):
-        val+=(brd.board[i]*(2**i))
+        val+=(brd.board[i]*(2**(width*i)))
     game_atts["board"]=val
     with open('.\game\game_atribute.json','w') as file:
         json.dump(game_atts,file,indent=4)
