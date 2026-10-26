@@ -10,10 +10,12 @@
         275,
         51
     ],
+    "screen_width": 1280,
+    "screen_height": 720,
     "length": 40,
     "csr_colour": "red",
     "tetris_colour": "white",
     "notetris_colour": "black",
     "bg_colour": "green",
-    "board": 11648223
+    "board": 0
 }
