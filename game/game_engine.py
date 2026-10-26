@@ -1,8 +1,7 @@
 
 #Callibrations for the board
 
-
-width = 20
+width = 10
 height = 20
 shape_size = 4
 shapes=[39,99,54,15,275,51]
@@ -18,7 +17,7 @@ class Board:
     board=[]
     #setting row
     def __init__(self,data):
-        print("Starting funcion \n Board init")
+        print("Board init")
         for i in range(height):
             self.board.append(data%(2**width))
             data=data//(2**width)
@@ -79,7 +78,10 @@ class Cursor:
             #print(Max)
             Max=Max//2
             i+=1
-        self.size=i  
+        self.size=i
+        if (self.col>width-self.size):
+            self.col=width-self.size
+
     def converter(self):
         temp=[]
         if(self.col<=width-self.size):
@@ -127,28 +129,33 @@ def update_Game(brd,csr):
             brd.board.append(0)
 
 
-def controller(brd,csr,prm):
+def Game(brd,csr,prm):
     match(prm):
         case 'e':
             return 0
         case 'w':
             csr.rotater()
-            return 1
+        
         case 'd':
             csr.col+=1
             if(csr.col==width-csr.size+1):
                 csr.col=0
-            return 1
+          
         case 'a':
             
             if(csr.col==0):
                 csr.col=width-csr.size+1
             csr.col-=1
-            return 1
+           
         case '\r':
+            
             update_Game(brd,csr) 
-            return 2      
+            csr=Cursor(randomizer())
+            if(brd.board[height-shape_size+1>0]):
+                return 1
+                  
 
+        
 
             
 
