@@ -1,5 +1,6 @@
 
 #Callibrations for the board
+import game
 import json
 with open('.\game\game_atribute.json', 'r') as file:
     game_atts = json.load(file)
@@ -137,6 +138,7 @@ def Game(brd,csr,prm):
     #print(brd.board[(height-shape_size+1)])
     match(prm):
         case 'e':
+            save(brd)
             return 0
         case 'w':
             csr.rotater()
@@ -161,7 +163,13 @@ def Game(brd,csr,prm):
                 return 1
             return -1
                   
-
+def save(brd):
+    val=0
+    for i in range(height):
+        val+=(brd.board[i]*(2**i))
+    game_atts["board"]=val
+    with open('.\game\game_atribute.json','w') as file:
+        json.dump(game_atts,file,indent=4)
 
 
 

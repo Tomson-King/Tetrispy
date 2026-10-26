@@ -1,11 +1,19 @@
 {
-    "width" : 10,
-    "height" : 20,
-    "shape_size" : 4,
-    "shapes":[39,99,54,15,275,51],
-    "length":40,
-    "csr_colour":"red",
-    "tetris_colour":"white",
-    "notetris_colour":"black",
-    "bg_colour":"green"
+    "width": 10,
+    "height": 20,
+    "shape_size": 4,
+    "shapes": [
+        39,
+        99,
+        54,
+        15,
+        275,
+        51
+    ],
+    "length": 40,
+    "csr_colour": "red",
+    "tetris_colour": "white",
+    "notetris_colour": "black",
+    "bg_colour": "green",
+    "board": 495
 }
