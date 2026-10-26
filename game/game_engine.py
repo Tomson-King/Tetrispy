@@ -18,9 +18,11 @@ class Board:
     #setting row
     def __init__(self,data):
         print("Board init")
+        self.board.clear()
         for i in range(height):
             self.board.append(data%(2**width))
             data=data//(2**width)
+
    
 
 
@@ -117,7 +119,7 @@ def update_Game(brd,csr):
     for i in range(shape_size):
         rows.append(row+i)
     csrtemp=csr.converter()
-    for i in range(height-shape_size-1,-1,-1):
+    for i in range(height-1,-1,-1):
         temp=brd.board[i]
         for j in range(width):
             if i in rows:
@@ -130,29 +132,32 @@ def update_Game(brd,csr):
 
 
 def Game(brd,csr,prm):
+    #print(brd.board[(height-shape_size+1)])
     match(prm):
         case 'e':
             return 0
         case 'w':
             csr.rotater()
-        
+            return -1
         case 'd':
             csr.col+=1
             if(csr.col==width-csr.size+1):
                 csr.col=0
-          
+            return -1
         case 'a':
             
             if(csr.col==0):
                 csr.col=width-csr.size+1
             csr.col-=1
-           
+            return -1
         case '\r':
             
             update_Game(brd,csr) 
             csr=Cursor(randomizer())
-            if(brd.board[height-shape_size+1>0]):
+            if(brd.board[(height-shape_size+1)]>0):
+                brd=Board(0)
                 return 1
+            return -1
                   
 
         
