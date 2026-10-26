@@ -1,5 +1,5 @@
 
-from game import shape_size
+
 from game.game_engine import *
 #import curses
 import pygame
@@ -105,7 +105,7 @@ def display_Game(brd,csr,screen,clock,prm,running):
     bg_colour="black"
     prm=1
     running = True
-    start=(time.time())
+    start=int(time.time())
     print(start)
 
     while running:
@@ -123,7 +123,7 @@ def display_Game(brd,csr,screen,clock,prm,running):
                     prm='a'
                 elif event.key == pygame.K_d:
                     prm='d'
-                elif event.key == pygame.K_RETURN:
+                elif event.key == pygame.K_RETURN or event.key == pygame.K_s:
                     prm='\r'
                 elif event.key == pygame.K_ESCAPE:
                     prm='e'
@@ -134,12 +134,22 @@ def display_Game(brd,csr,screen,clock,prm,running):
         
            
     # RENDER YOUR GAME HERE
+
+        rows=[]
+        row=height-shape_size
+        rjump=int(time.time())-start
+        row-=rjump
+        if(row<=get_row(brd,csr)):
+            row=get_row(brd,csr)
+            prm='\r'
         game=Game(brd,csr,prm) 
         if(game==1 or game==0):
             break
+        if(prm=='\r'):
+            start=int(time.time())
+        
         prm=1
-        rows=[]
-        row=get_row(brd,csr)
+        
         for i in range(shape_size):
             rows.append(row+i)
         csrtemp=csr.converter()
