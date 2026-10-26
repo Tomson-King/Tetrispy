@@ -8,6 +8,7 @@ import msvcrt
 import time
 
 
+
 def getch():
     # msvcrt.getch() returns a byte string; decode it to get a standard string
     return msvcrt.getch().decode("utf-8", errors="ignore")
@@ -99,17 +100,18 @@ def Pygame_init(board,cursor):
 
     
 def display_Game(brd,csr,screen,clock,prm,running):
-    length=40
-    csr_colour="red"
-    tetris_colour="white"
-    bg_colour="black"
+    length=game_atts["length"]
+    csr_colour=game_atts["csr_colour"]
+    tetris_colour=game_atts["tetris_colour"]
+    notetris_colour=game_atts["notetris_colour"]
+    bg_colour=game_atts["bg_colour"]
     prm=1
     running = True
     start=int(time.time())
     print(start)
 
     while running:
-        screen.fill("purple")
+        screen.fill(bg_colour)
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
         for event in pygame.event.get():
@@ -170,7 +172,7 @@ def display_Game(brd,csr,screen,clock,prm,running):
                 tetris=pygame.Rect(j*length,(height-shape_size-1-i)*length,length,length)
                 match(pr):
                     case 0:
-                        pygame.draw.rect(screen,bg_colour,tetris)
+                        pygame.draw.rect(screen,notetris_colour,tetris)
                        
                     case 1:
                         pygame.draw.rect(screen,tetris_colour,tetris)

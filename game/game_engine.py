@@ -1,10 +1,12 @@
 
 #Callibrations for the board
-
-width = 10
-height = 20
-shape_size = 4
-shapes=[39,99,54,15,275,51]
+import json
+with open('.\game\game_atribute.json', 'r') as file:
+    game_atts = json.load(file)
+width = game_atts["width"]
+height = game_atts["height"]
+shape_size = game_atts["shape_size"]
+shapes=game_atts["shapes"]
 
 
 def randomizer():
