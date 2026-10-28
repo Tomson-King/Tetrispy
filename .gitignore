@@ -1,0 +1,6 @@
+game/
+.vscode
+*.json
+game\game_atribute.json
+tetris.py
+game\__pycache__

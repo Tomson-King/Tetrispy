@@ -8,3 +8,4 @@ cursor=Cursor(randomizer())
 Pygame_init(board,cursor)
 print("Program end")
 
+print()
