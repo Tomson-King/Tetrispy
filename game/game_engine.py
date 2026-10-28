@@ -46,6 +46,7 @@ class Cursor:
             data=data//(2**shape_size)
         self._setter()
         
+        
     def _rotate(self):
          #print("\n Cursor rotate")
         temp=self.cursor
