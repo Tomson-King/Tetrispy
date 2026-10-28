@@ -3,3 +3,4 @@ game/game_atribute.json
 .gitattributes
 game/game_atribute.json
 game/game_atribute.json
+*.json
