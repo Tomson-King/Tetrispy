@@ -1,1 +1,3 @@
-*.json
+game\game_atribute.json
+.gitignore
+.gitattributes
