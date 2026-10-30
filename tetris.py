@@ -15,8 +15,8 @@ def main():
         
         board = Board(game_atts["board"])
         cursor = Cursor(randomizer())
-        terminal_Game(board, cursor)
-       # Pygame_init(board, cursor)
+        #terminal_Game(board, cursor)
+        Pygame_init(board, cursor)
     except Exception as e:
         logger.error(f"Error in main: {e}", exc_info=True)
         raise
