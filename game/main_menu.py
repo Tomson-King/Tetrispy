@@ -55,6 +55,11 @@ def pygame_menu(screen,clock,background):
             c_x=screen_rect.centerx
             c_y=screen_rect.centery
 
+            cursor_img=pygame.image.load("graphics/cursor.png").convert()
+            cursor_rect=cursor_img.get_rect(bottomleft = mouse_pos)
+            cursor_img.set_colorkey((14, 247, 6))
+            pygame.mouse.set_visible(False)
+
             newgame_img=pygame.image.load("graphics/newgame.png").convert()
             continue_img=pygame.image.load("graphics/continue.png").convert_alpha()
             exit_img=pygame.image.load("graphics/exit.png").convert_alpha()
@@ -81,6 +86,7 @@ def pygame_menu(screen,clock,background):
             screen.blit(newgame_img,newgame_rect)
             screen.blit(continue_img,continue_rect)
             screen.blit(exit_img,exit_rect)
+            screen.blit(cursor_img,cursor_rect)
 
             if(newgame_selected_rect.collidepoint(mouse_pos)):
                 screen.blit(newgame_selected_img,newgame_selected_rect)
@@ -98,8 +104,8 @@ def pygame_menu(screen,clock,background):
             elif(exit_selected_rect.collidepoint(mouse_click_pos)):
                 screen.blit(exit_selected_img,exit_selected_rect)
                 return 0
-
-
+            
+            screen.blit(cursor_img,cursor_rect)
             pygame.display.flip()
 
             clock.tick(60) 
@@ -129,6 +135,11 @@ def pygame_pause(screen,clock,background):
             c_x=screen_rect.centerx
             c_y=screen_rect.centery
 
+            cursor_img=pygame.image.load("graphics/cursor.png").convert()
+            cursor_rect=cursor_img.get_rect(bottomleft = mouse_pos)
+            cursor_img.set_colorkey((14, 247, 6))
+            pygame.mouse.set_visible(False)
+
             newgame_img=pygame.image.load("graphics/newgame.png").convert_alpha()
             continue_img=pygame.image.load("graphics/continue.png").convert_alpha()
             exit_img=pygame.image.load("graphics/exit.png").convert_alpha()
@@ -155,6 +166,7 @@ def pygame_pause(screen,clock,background):
             screen.blit(newgame_img,newgame_rect)
             screen.blit(continue_img,continue_rect)
             screen.blit(exit_img,exit_rect)
+            
 
             if(newgame_selected_rect.collidepoint(mouse_pos)):
                 screen.blit(newgame_selected_img,newgame_selected_rect)
@@ -173,7 +185,7 @@ def pygame_pause(screen,clock,background):
                 screen.blit(exit_selected_img,exit_selected_rect)
                 return 0
 
-
+            screen.blit(cursor_img,cursor_rect)
             pygame.display.flip()
 
             clock.tick(60)

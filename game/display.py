@@ -174,6 +174,7 @@ def display_Game(brd,csr,screen,clock,prm,background):
         c_x=screen_rect.centerx
         c_y=screen_rect.centery
         
+        
         board_surf=pygame.Surface((400,640))
         #board_surf.fill("red")
         board_rect=board_surf.get_rect(center=(c_x,c_y))
